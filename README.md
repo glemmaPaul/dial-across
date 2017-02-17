@@ -1,7 +1,7 @@
 Face Your Peers
 ==============================
 
-__Version:__ 0.0.0
+__Version:__ 0.1.0-dev
 
 A project to talk about politics to understand each other a little better.
 
