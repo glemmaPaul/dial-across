@@ -1,0 +1,8 @@
+---
+project_name: fyp
+project_repo_url: git@github.com:glemmaPaul/face-your-peers.git
+project_repo_remote: origin
+domain_name: fyp.com
+repo_version: master
+pg_gis: False
+sass_with_django_compressor: False
