@@ -1,0 +1,11 @@
+{
+  "Databases": {
+    "mongodb": "mongodb://localhost/test"
+  },
+  "Server": {
+    "port": "3000"
+  },
+  "Calls": {
+    "twilioNumber": "+1 (202) 335-3332"
+  }
+}

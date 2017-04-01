@@ -1,0 +1,38 @@
+{
+  "name": "dial-accross",
+  "version": "0.1.0",
+  "description": "Dial across the aisle, trying to get people with different political ideas connected randomly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test",
+    "start": "babel-node index.js --presets es2015,stage-2",
+    "watch": "nodemon index.js --exec babel-node --presets es2015,stage-2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://glemmaPaul@github.com/glemmaPaul/dial-across.git"
+  },
+  "author": "Paul Oostenrijk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/glemmaPaul/dial-across/issues"
+  },
+  "homepage": "https://github.com/glemmaPaul/dial-across#readme",
+  "devDependencies": {
+    "babel-cli": "^6.24.0",
+    "babel-preset-es2015": "^6.24.0",
+    "babel-preset-stage-2": "^6.22.0",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "config": "^1.25.1",
+    "express": "^4.15.2",
+    "joi": "^10.3.4",
+    "libphonenumber": "0.0.10",
+    "mongoose": "^4.9.2",
+    "mongoose-simple-random": "^0.4.1",
+    "twilio": "^2.11.1"
+  }
+}
