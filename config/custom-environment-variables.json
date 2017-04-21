@@ -1,4 +1,7 @@
 {
+  "Databases": {
+    "mongodb": "MONGODB_URI"
+  },
   "Server": {
     "port": "PORT"
   }
