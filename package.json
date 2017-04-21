@@ -6,8 +6,8 @@
   "scripts": {
     "test": "test",
     "start": "babel-node index.js --presets es2015,stage-2",
-    "build": "babel-node index.js -d dist --presets es2015,stage-2",
-    "serve": "node dist/index.js"
+    "build": "babel index.js --presets es2015,stage-2 --out-file build.js",
+    "serve": "node build.js"
   },
   "repository": {
     "type": "git",
