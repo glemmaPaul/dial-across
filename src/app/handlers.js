@@ -5,6 +5,8 @@ import twilio from 'twilio'
 import { PoliticalSides, Receiver } from './models'
 import Promise from 'bluebird'
 
+var twilioClient = new twilio.RestClient(accountSid, authToken);
+
 /**
  * Creates TwimlResponse for incoming call to capture input
  * @return {TwimlResponse}
@@ -49,7 +51,7 @@ export function handlePoliticalPreferenceResponse(call, digits) {
 
     twiml.say(`You selected ${preference.name}. We will now try to find you someone to talk to.`).pause()
 
-    twiml.redirect('/calls/redirect/')
+    twiml.redirect('/calls/queue/')
 
     return twiml
 }
@@ -68,28 +70,51 @@ export function handleDialRedirectForCall(call) {
             politicalSide: {$ne: call.politicalSide}
         }
 
-        Receiver.findRandom(query, {}, {count: 1},
-            (error, results) => {
-                if (error) {
-                    throw error
-                }
+        Receiver.getRandomCaller(query).then(
+            (receiver) => {
+                call.toNumber = receiver.phoneNumber
+                call.save()
 
-                if (results) {
-                    let receiver = results.pop()
-                    call.toNumber = receiver.phoneNumber
-                    call.save()
+                twiml.say(`We are now connecting you with someone from across the aisle.`).pause()
+                twiml.enqueue(queueKey(call))
 
-                    twiml.say(`We are now connecting you with someone from across the aisle.`).pause()
-                    twiml.dial({
-                        callerId: config.get('Calls.twilioNumber'),
-                        hangupOnStar: true
-                    }, receiver.phoneNumber)
-                }
-                else {
-                    twiml.say("We were not able to find anyone at this moment, try again later.")
-                }
+                sendOutboundCall(call, receiver)
 
-                resolve(twiml)
-            })
+                return twiml
+            },
+            (error) => {
+                twiml.say("We were not able to find anyone at this moment, try another time.")
+            }).then(resolve, reject)
     })
+}
+
+export function connectReceiverWithCall(call) {
+    let twiml = new twilio.TwimlResponse()
+
+    twiml.say('We are connecting you to a caller from Dial Across The Aisle.')
+    twiml.dial({}, () => {
+        this.queue(queueKey(call))
+    })
+
+    return twiml
+}
+
+/**
+ * Creates an outbound call to a receiver
+ * @param  {models.Call} call
+ * @param  {models.Receiver} receiver
+ */
+function sendOutboundCall(call, receiver) {
+    twilioClient.calls.create({
+        url: `/calls/dial/${call.twilioId}/`,
+        to: receiver.phoneNumber,
+        from: config.get('Calls.twilioNumber')
+    }, function(err, twilioCall) {
+        call.outboutTwilioId = twilioCall.sid
+        call.save()
+    });
+}
+
+function queueKey(call) {
+    return "queue:" + call.twilioId
 }

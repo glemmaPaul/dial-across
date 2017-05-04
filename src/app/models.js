@@ -32,11 +32,11 @@ let validatePhone = {
 
 let politicalSides = [
     {
-        name: "Republican",
+        name: "Conservatism",
         value: "republican"
     },
     {
-        name: "Liberal",
+        name: "Liberalism",
         value: "liberal"
     }
 ]
@@ -52,9 +52,10 @@ let callSchema = new mongoose.Schema({
         validate: validatePhone
     },
     twilioId: String,
+    outboutTwilioId: String,  // Call made to receiver
     politicalSide: {
         type: String,
-        enum: politicalSides.map(function(v) { v.value }),
+        enum: politicalSides.map(function(v) { return v.value }),
         required: [false, ]
     }
 })
@@ -99,12 +100,32 @@ let receiverSchema = new mongoose.Schema({
     },
     politicalSide: {
         type: String,
-        enum: politicalSides.map(function(v) { v.value }),
+        enum: politicalSides.map(function(v) { return v.value }),
         required: [false, ]
     }
 })
 
-receiverSchema.plugin(random)
+receiverSchema.statics.getRandomCaller = function(query) {
+    const self = this;
+
+    return new Promise((resolve, reject) => {
+        this.count(query, function(err, count) {
+            if (err) {
+              return reject(err);
+            }
+            var rand = Math.floor(Math.random() * count);
+            this.findOne(query).skip(rand).exec(
+                (err, caller) => {
+                    if (err) {
+                      return reject(err);
+                    }
+
+                    return resolve(caller)
+                });
+          }.bind(this));
+    })
+
+}
 
 
 export const Receiver = mongoose.model('Receiver', receiverSchema)

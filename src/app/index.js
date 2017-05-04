@@ -67,7 +67,6 @@ function attach(app) {
                     response.send(twiml.toString());
                 })
 
-
             },
             (err) => {
                 console.log(err)
@@ -80,19 +79,19 @@ function attach(app) {
      * @param  {route} '/calls/dial/'
      * @param  {function} Handler for twilio
      */
-    app.post('/calls/dial/:call-id', (request, response) => {
-        var twiml;
-
-        if (request.body.Digits) {
-            twiml = controllers.handlePoliticalPreferenceResponse(request.body.Digits)
-        }
-        else {
-            twiml = controllers.createTwimlIncomingCall()
-        }
-
-        // Render the response as XML in reply to the webhook request
-        response.type('text/xml');
-        response.send(twiml.toString());
+    app.post('/calls/dial/:callId', (request, response) => {
+        Call.getCallByTwilio(request.body.CallSid, {
+            fromNumber: request.body.From
+        }).then(
+            (call) => {
+                var twiml = controllers.connectReceiverWithCall()
+                response.type('text/xml');
+                response.send(twiml.toString());
+            },
+            (err) => {
+                console.log(err)
+            }
+        )
     })
 
 
