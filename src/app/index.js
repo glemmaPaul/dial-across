@@ -52,11 +52,34 @@ function attach(app) {
     })
 
     /**
-     * Redirects call to random receiver
+     * Queues call to random receiver
      * @param  {route}   '/calls/redirect/'
      * @param  {Function} callback
      */
-    app.post('/calls/redirect/', (request, response) => {
+    app.post('/calls/start/', (request, response) => {
+        Call.getCallByTwilio(request.body.CallSid, {
+            fromNumber: request.body.From
+        }).then(
+            (call) => {
+                controllers.lookupReceiverForCall(call).then((twiml) => {
+                    // Render the response as XML in reply to the webhook request
+                    response.type('text/xml');
+                    response.send(twiml.toString());
+                })
+
+            },
+            (err) => {
+                console.log(err)
+            }
+        )
+    })
+
+    /**
+     * Makes sure Receiver called to be active
+     * @param  {route}   '/calls/redirect/'
+     * @param  {Function} callback
+     */
+    app.post('/calls/queue/', (request, response) => {
         Call.getCallByTwilio(request.body.CallSid, {
             fromNumber: request.body.From
         }).then(
@@ -67,7 +90,26 @@ function attach(app) {
                     response.send(twiml.toString());
                 })
 
+            },
+            (err) => {
+                console.log(err)
+            }
+        )
+    })
 
+    /**
+     * Twilio Invite Conference Endpoint
+     * @param  {route} '/calls/dial/'
+     * @param  {function} Handler for twilio
+     */
+    app.post('/calls/invite/:callId', (request, response) => {
+        Call.getCallByTwilio(request.params.callId, {
+            fromNumber: request.body.From
+        }).then(
+            (call) => {
+                var twiml = controllers.createRequestReceiverJoining(call)
+                response.type('text/xml');
+                response.send(twiml.toString());
             },
             (err) => {
                 console.log(err)
@@ -80,19 +122,19 @@ function attach(app) {
      * @param  {route} '/calls/dial/'
      * @param  {function} Handler for twilio
      */
-    app.post('/calls/dial/:call-id', (request, response) => {
-        var twiml;
-
-        if (request.body.Digits) {
-            twiml = controllers.handlePoliticalPreferenceResponse(request.body.Digits)
-        }
-        else {
-            twiml = controllers.createTwimlIncomingCall()
-        }
-
-        // Render the response as XML in reply to the webhook request
-        response.type('text/xml');
-        response.send(twiml.toString());
+    app.post('/calls/join/:callId', (request, response) => {
+        Call.getCallByTwilio(request.params.callId, {
+            fromNumber: request.body.From
+        }).then(
+            (call) => {
+                var twiml = controllers.connectReceiverWithCall(call)
+                response.type('text/xml');
+                response.send(twiml.toString());
+            },
+            (err) => {
+                console.log(err)
+            }
+        )
     })
 
 

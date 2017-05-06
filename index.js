@@ -1,5 +1,5 @@
 import express from 'express'
-import dialAcross from './app'
+import dialAcross from './src/app'
 import config from 'config'
 
 var app = express()

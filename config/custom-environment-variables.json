@@ -1,0 +1,14 @@
+{
+  "Databases": {
+    "mongodb": "MONGODB_URI"
+  },
+  "Server": {
+    "port": "PORT",
+    "baseURL": "SERVER_BASE_URL"
+  },
+  "Twilio": {
+    "fromNumber": "TWILIO_FROM_NUMBER",
+    "accountSid": "TWILIO_ACCOUNT_SID",
+    "authToken": "TWILIO_AUTH_TOKEN"
+  }
+}
