@@ -34,6 +34,7 @@
     "debug": "^2.6.6",
     "express": "^4.15.2",
     "joi": "^10.3.4",
+    "joi-phone": "0.0.1",
     "libphonenumber": "0.0.10",
     "mongoose": "^4.9.2",
     "mongoose-simple-random": "^0.4.1",
