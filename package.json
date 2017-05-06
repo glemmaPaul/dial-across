@@ -7,7 +7,8 @@
     "test": "test",
     "start": "babel-node index.js --presets es2015,stage-2",
     "build": "babel index.js --presets es2015,stage-2 --out-file build.js",
-    "serve": "node build.js"
+    "serve": "node build.js",
+    "watch": "babel-watch --watch src --presets es2015,stage-2  index.js "
   },
   "repository": {
     "type": "git",
@@ -20,6 +21,7 @@
   },
   "homepage": "https://github.com/glemmaPaul/dial-across#readme",
   "devDependencies": {
+    "babel-watch": "^2.0.6",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
@@ -29,6 +31,7 @@
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
     "config": "^1.25.1",
+    "debug": "^2.6.6",
     "express": "^4.15.2",
     "joi": "^10.3.4",
     "libphonenumber": "0.0.10",

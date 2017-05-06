@@ -4,8 +4,11 @@ import config from 'config'
 import twilio from 'twilio'
 import { PoliticalSides, Receiver } from './models'
 import Promise from 'bluebird'
+import debug from 'debug'
 
-var twilioClient = new twilio.RestClient(accountSid, authToken);
+var logger = debug('app.handlers')
+var twilioClient = new twilio.RestClient(
+    config.get('Twilio.accountSid'), config.get('Twilio.authToken'));
 
 /**
  * Creates TwimlResponse for incoming call to capture input
@@ -49,9 +52,9 @@ export function handlePoliticalPreferenceResponse(call, digits) {
     call.politicalSide = preference.value
     call.save()
 
-    twiml.say(`You selected ${preference.name}. We will now try to find you someone to talk to.`).pause()
+    twiml.say(`You selected ${preference.name}. Give us a moment to connect you with someone.`).pause()
 
-    twiml.redirect('/calls/queue/')
+    twiml.redirect('/calls/start/')
 
     return twiml
 }
@@ -61,7 +64,7 @@ export function handlePoliticalPreferenceResponse(call, digits) {
  * @param  {models.Call} call object
  * @return {Promise -> TwimlResponse} for async resolve of receiver
  */
-export function handleDialRedirectForCall(call) {
+export function lookupReceiverForCall(call) {
     return new Promise((resolve, reject) => {
         let twiml = new twilio.TwimlResponse();
 
@@ -75,25 +78,47 @@ export function handleDialRedirectForCall(call) {
                 call.toNumber = receiver.phoneNumber
                 call.save()
 
-                twiml.say(`We are now connecting you with someone from across the aisle.`).pause()
-                twiml.enqueue(queueKey(call))
+                twiml.say(`We've found someone from across the Aisle,.. Connecting you through now.`)
+                twiml.dial((dialNode) => {
+                    dialNode.conference(conferenceKey(call), {
+                        startConferenceOnEnter: true
+                    });
+                })
 
                 sendOutboundCall(call, receiver)
 
                 return twiml
             },
             (error) => {
-                twiml.say("We were not able to find anyone at this moment, try another time.")
+                twiml.say("We're not able to find anyone at this moment, try another time.")
             }).then(resolve, reject)
     })
 }
 
-export function connectReceiverWithCall(call) {
+export function createRequestReceiverJoining(call) {
     let twiml = new twilio.TwimlResponse()
 
     twiml.say('We are connecting you to a caller from Dial Across The Aisle.')
-    twiml.dial({}, () => {
-        this.queue(queueKey(call))
+    twiml.gather({
+        numDigits: 1,
+        action: apiURL(`/calls/join/${call.twilioId}`),
+        method: 'POST'
+    }, (gatherNode) => {
+        gatherNode.say("Press any key to accept the call.")
+    })
+
+    twiml.say("Sorry, did not get any response")
+    twiml.hangup()
+
+    return twiml
+}
+
+export function connectReceiverWithCall(call) {
+    let twiml = new twilio.TwimlResponse()
+    twiml.dial((dialNode) => {
+        dialNode.conference(conferenceKey(call), {
+            startConferenceOnEnter: false
+        });
     })
 
     return twiml
@@ -106,15 +131,25 @@ export function connectReceiverWithCall(call) {
  */
 function sendOutboundCall(call, receiver) {
     twilioClient.calls.create({
-        url: `/calls/dial/${call.twilioId}/`,
+        url: apiURL(`/calls/invite/${call.twilioId}/`),
         to: receiver.phoneNumber,
-        from: config.get('Calls.twilioNumber')
+        from: config.get('Twilio.fromNumber')
     }, function(err, twilioCall) {
+        if (err) {
+            logger(err)
+        }
+        debug(`Outbound call created to ${receiver.phoneNumber}`)
+
         call.outboutTwilioId = twilioCall.sid
         call.save()
     });
 }
 
-function queueKey(call) {
-    return "queue:" + call.twilioId
+function conferenceKey(call) {
+    debug("queue:" + call.twilioId)
+    return "conference " + call.twilioId
+}
+
+function apiURL(route) {
+    return config.get('Server.baseURL') + route
 }
