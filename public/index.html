@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="" ng-app="dialacross" ng-controller="BaseController">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -12,14 +12,14 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
+
     <body>
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div class="thank-you-holder">
+        <div class="thank-you-holder" ng-class="{'is-visible': formSend}">
             <div id="thank-you" class="centered">
                 <h3>Thank you!</h3>
                 <p>your response has been recorded, we will let you know when we are ready to go :)</p>
@@ -33,17 +33,119 @@
 
 
         <section class="branded-content full-height bg-illo">
-            <div class="inner">
-                <div class="logo"></div>
-                <form id="sign-up">
-                    <input placeholder="full name"/>
-                    <input placeholder="phone number"/>
-                </form>
-                <p style="font-weight: 300;">Dial Across the aisle is still figuring some stuff out, but we're so happy you're interested in participating. If you leave your email and phone number we will let you know when the survice is ready to go.</p>
+            <div class="logo"></div>
 
-                <a href="" class="button submit">Submit</a>
-            </div>
+            <form id="sign-up" ng-hide="formSend" name="signUpForm" ng-submit="vm.signUp(signUpForm.$valid)" ng-controller="SignUpController as vm" novalidate>
 
+                <div class="form-warning--container" ng-show="signUpForm.$submitted">
+                    <span 
+                        class="form-warning ng-cloak" 
+                        ng-show="signUpForm.$submitted && signUpForm.firstName.$error.required">
+
+                        You first name is required.
+                    </span>
+
+                    <span 
+                        class="form-warning ng-cloak" 
+                        ng-show="signUpForm.$submitted && signUpForm.lastName.$error.required">
+
+                        You first last is required.
+                    </span>
+
+                    <span 
+                        class="form-warning ng-cloak" 
+                        ng-show="signUpForm.$submitted && signUpForm.politicalSide.$error.required">
+
+                        You need to select a political preference
+                    </span>
+
+                    <span 
+                        class="form-warning last ng-cloak" 
+                        ng-show="signUpForm.$submitted && signUpForm.phoneNumber.$error.required">
+
+                        You phone number is not correct (example).
+                    </span>
+                </div>
+
+                <div class="flex-container split">
+                    <input 
+                        type="text" 
+                        class="signup-input signup--first-name" 
+                        name="firstName" ng-model="user.firstName" 
+                        placeholder="First name" 
+                        required
+                    />
+
+                    <input 
+                        type="text" 
+                        class="signup-input signup--last-name" 
+                        name="lastName" 
+                        ng-model="user.lastName" 
+                        placeholder="Last name"
+                        required
+                    />
+                </div>
+
+                <div class="flex-container">
+                    <input 
+                        type="text"
+                        class="signup-input signup--phone" 
+                        name="phoneNumber" 
+                        ng-model="user.phoneNumber" 
+                        ui-mask="+1(999) 999-9999"
+                        ui-mask-placeholder 
+                        ui-mask-placeholder-char="_"
+                        model-view-value="true"
+                        placeholder="phone number" 
+                        required
+                    />
+                </div> 
+
+                <div class="radio-group--container">
+                    <button 
+                        type="button" 
+                        ng-click="vm.selectPoliticalSide($event)" 
+                        class="btn--radio"
+                        ng-class="{'selected': user.politicalSide == 'republican', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}" 
+                        value="republican">
+
+                        Conservative
+                    </button>
+
+                    <button 
+                        type="button" 
+                        ng-click="vm.selectPoliticalSide($event)" 
+                        class="btn--radio" 
+                        ng-class="{'selected': user.politicalSide == 'liberal', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}" 
+                        value="liberal">
+
+                        Liberal
+                    </button>
+
+                    <!-- // Hidden radio buttons -->
+                    <input 
+                        type="radio" 
+                        style="display: none;" 
+                        name="politicalSide" 
+                        ng-model="user.politicalSide" 
+                        value="republican" 
+                        required
+                    />
+
+                    <input 
+                        type="radio" 
+                        style="display: none;" 
+                        name="politicalSide" 
+                        ng-model="user.politicalSide" 
+                        value="liberal" 
+                        required
+                    />
+                </div>
+
+                <p class="text-center" style="font-weight: 300;">Dial Across the aisle is still figuring some stuff out, but we're so happy you're interested in participating. If you leave your email and phone number we will let you know when the survice is ready to go.</p>
+
+                <button class="button submit" type="submit">submit</button>
+            </form>
         </section>
 
 
@@ -76,5 +178,7 @@
         </footer>
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700|Roboto:300,500" rel="stylesheet">
+
+        <script src="./js/main.min.js"></script>
     </body>
 </html>
