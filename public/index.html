@@ -22,7 +22,7 @@
         <div class="thank-you-holder" ng-class="{'is-visible': formSend}">
             <div id="thank-you" class="centered">
                 <h3>Thank you!</h3>
-                <p>your response has been recorded, we will let you know when we are ready to go :)</p>
+                <p><i>your response has been recorded, we will let you know when we are ready to go</i> 🙂</p>
             </div>
         </div>
 
@@ -38,29 +38,29 @@
             <form id="sign-up" ng-hide="formSend" name="signUpForm" ng-submit="vm.signUp(signUpForm.$valid)" ng-controller="SignUpController as vm" novalidate>
 
                 <div class="form-warning--container" ng-show="signUpForm.$submitted">
-                    <span 
-                        class="form-warning ng-cloak" 
+                    <span
+                        class="form-warning ng-cloak"
                         ng-show="signUpForm.$submitted && signUpForm.firstName.$error.required">
 
                         You first name is required.
                     </span>
 
-                    <span 
-                        class="form-warning ng-cloak" 
+                    <span
+                        class="form-warning ng-cloak"
                         ng-show="signUpForm.$submitted && signUpForm.lastName.$error.required">
 
                         You last name is required.
                     </span>
 
-                    <span 
-                        class="form-warning ng-cloak" 
+                    <span
+                        class="form-warning ng-cloak"
                         ng-show="signUpForm.$submitted && signUpForm.politicalSide.$error.required">
 
                         You need to select a political preference.
                     </span>
 
-                    <span 
-                        class="form-warning last ng-cloak" 
+                    <span
+                        class="form-warning last ng-cloak"
                         ng-show="signUpForm.$submitted && signUpForm.phoneNumber.$error.required">
 
                         You phone number is not correct (+1 917 123-4567).
@@ -68,113 +68,114 @@
                 </div>
 
                 <div class="flex-container split">
-                    <input 
-                        type="text" 
-                        class="signup-input signup--first-name" 
-                        name="firstName" ng-model="user.firstName" 
-                        placeholder="First name" 
+                    <input
+                        type="text"
+                        class="signup-input signup--first-name"
+                        name="firstName" ng-model="user.firstName"
+                        placeholder="First name"
                         required
                     />
 
-                    <input 
-                        type="text" 
-                        class="signup-input signup--last-name" 
-                        name="lastName" 
-                        ng-model="user.lastName" 
+                    <input
+                        type="text"
+                        class="signup-input signup--last-name"
+                        name="lastName"
+                        ng-model="user.lastName"
                         placeholder="Last name"
                         required
                     />
                 </div>
 
                 <div class="flex-container">
-                    <input 
+                    <input
                         type="text"
-                        class="signup-input signup--phone" 
-                        name="phoneNumber" 
-                        ng-model="user.phoneNumber" 
-                        ui-mask="+1(999) 999-9999"
-                        ui-mask-placeholder 
+                        class="signup-input signup--phone"
+                        name="phoneNumber"
+                        ng-model="user.phoneNumber"
+                        ui-mask="+1 999 999 9999"
+                        ui-mask-placeholder
                         ui-mask-placeholder-char="_"
                         model-view-value="true"
-                        placeholder="phone number" 
+                        placeholder="phone number"
                         required
                     />
-                </div> 
+                </div>
 
                 <div class="radio-group--container">
-                    <button 
-                        type="button" 
-                        ng-click="vm.selectPoliticalSide($event)" 
+                    <button
+                        type="button"
+                        ng-click="vm.selectPoliticalSide($event)"
                         class="btn--radio"
-                        ng-class="{'selected': user.politicalSide == 'republican', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}" 
+                        ng-class="{'selected': user.politicalSide == 'republican', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}"
                         value="republican">
 
                         Conservative
                     </button>
 
-                    <button 
-                        type="button" 
-                        ng-click="vm.selectPoliticalSide($event)" 
-                        class="btn--radio" 
-                        ng-class="{'selected': user.politicalSide == 'liberal', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}" 
+                    <button
+                        type="button"
+                        ng-click="vm.selectPoliticalSide($event)"
+                        class="btn--radio"
+                        ng-class="{'selected': user.politicalSide == 'liberal', 'error': signUpForm.$submitted && signUpForm.politicalSide.$error.required}"
                         value="liberal">
 
                         Liberal
                     </button>
 
                     <!-- // Hidden radio buttons -->
-                    <input 
-                        type="radio" 
-                        style="display: none;" 
-                        name="politicalSide" 
-                        ng-model="user.politicalSide" 
-                        value="republican" 
+                    <input
+                        type="radio"
+                        style="display: none;"
+                        name="politicalSide"
+                        ng-model="user.politicalSide"
+                        value="republican"
                         required
                     />
 
-                    <input 
-                        type="radio" 
-                        style="display: none;" 
-                        name="politicalSide" 
-                        ng-model="user.politicalSide" 
-                        value="liberal" 
+                    <input
+                        type="radio"
+                        style="display: none;"
+                        name="politicalSide"
+                        ng-model="user.politicalSide"
+                        value="liberal"
                         required
                     />
                 </div>
 
-                <p class="text-center" style="font-weight: 300;">Dial Across the aisle is still figuring some stuff out, but we're so happy you're interested in participating. If you leave your email and phone number we will let you know when the survice is ready to go.</p>
+                <p class="text-center" style="font-weight: 300;">Dial Across the aisle is still figuring some stuff out, but we're so happy you're interested in participating. If you leave your email and phone number we will let you know when the service is ready to go.</p>
 
-                <button class="button submit" type="submit">submit</button>
+                <button class="button submit" type="submit">Submit</button>
             </form>
         </section>
 
 
 
         <section class="blue-bg">
-                <h2>Hello</h2>
-                <p>
-                Welcome to Dial across the aisle, a good old fashioned toll-free number that puts people of different political leanings in touch with each other.
-                </p>
-
+          <div class="about-box">
+            <div class="content-column">
                 <h3>Why should we do this?</h3>
                 <p>
-                We’re not as divided as we seem. Most people want peace and prosperity for all. Their politics are more about telling their life stories than waging ideological warfare. We’re hoping the two sides will see each other’s essential humanity and realize we’re all more alike than different.
+                We’re not as divided as we seem. Most people just want to make sure them and their loved ones are safe, happy and prosperous. Peoples politics are more about telling their life stories than waging ideological warfare. We’re hoping the two sides will see each other’s essential humanity and realize we’re all more alike than different.
                 </p>
-
+            </div>
+            <div class="content-column">
                 <h3>How does it work?</h3>
                 <p>Just call and choose which type of person you’d like to talk to. We have curious, open-minded callers of all beliefs who, like you, want to learn about other types of people. It’s a level playing field, with each side seeking a new perspective and appreciation for their fellow Americans.
                 </p>
-
-
+            </div>
+            <div class="content-column">
                 <h3>How can I get involved?</h3>
-                <p>Do you keep up with the issues? Do you live in the United States? Looking to understand the big picture amid all this uncertainty? If this sounds like you, consider signing up to take a few calls a week. You get to pick a time that works for your schedule. And no spam, promise! If this feels like a lot and you’d rather dip your toes in the water before jumping in, you can just call the number and chat with one of the participants that signed up to receive calls :) </p>
-
-                <a href="" class="button submit">Join the Conversation</a>
-        </section>
+                <p>Do you live in the US? Want to get a better feel for what everyone’s thinking and feeling? Consider signing up to take a few calls a week, at whatever time works best for you. If you’d rather dip your toes in the water before jumping in, just call our toll-free number and chat with someone who’s signed up to receive calls.</p>
+            </div>
+          </div>
+                <a href="#" class="button submit">Join the Conversation</a>
+      </section>
 
 
         <footer>
-            Dial Across the Aisle. Copyright 2017.
+            For questions or issues signing up,<br />
+            get in touch at:<br />
+            <a href="mailto:hello@dialacross.us">hello@dialacross.us</a>
         </footer>
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700|Roboto:300,500" rel="stylesheet">

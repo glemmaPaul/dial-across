@@ -154,7 +154,7 @@ div, span, li {
     display: flex;
     justify-content: center;
     align-items: stretch;
-    
+
     margin: auto;
 
     @media ( max-width: 576px ) {
@@ -227,6 +227,12 @@ header{
 footer{
     background-color: $dark-grey;
     text-align: left;
+    text-align: center;
+    font-size: 13px;
+
+    a {
+      color: #fff
+    }
 }
 
 p{
@@ -266,9 +272,9 @@ p{
 }
 
 .logo{
-    background-image: url(../images/logo-08.png);
+    background-image: url(../images/logo.svg);
     width: 125px;
-    height: 128px;
+    height: 118px;
     background-size: contain;
     background-repeat: no-repeat;
     margin: 0 auto;
@@ -332,12 +338,59 @@ form input[type="text"]{
     transition: all 0.3s;
     display: inline-block;
     border: none;
+    position: relative;
+    top: 0px;
+    text-decoration: none;
+    margin: 0 10px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    box-shadow: 0px 5px 0px #c4c4c4;
+    text-shadow: 1px 1px 1px #fff;
+    -webkit-transition: All 100ms ease;
+    -moz-transition: All 100ms ease;
+    -o-transition: All 100ms ease;
+    -ms-transition: All 100ms ease;
+    transition: All 100ms ease;
+    color: #fff;
+    -webkit-box-shadow: 0px 5px 0px #a01b1b;
+    -moz-box-shadow: 0px 5px 0px #a01b1b;
+    -ms-box-shadow: 0px 5px 0px #a01b1b;
+    -o-box-shadow: 0px 5px 0px #a01b1b;
+    box-shadow: 0px 5px 0px #a01b1b;
+    text-shadow: 1px 1px 1px #a01b1b;
 }
 
-.button:hover{
+.button:active {
+  position: relative;
+  top: 5px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-transition: All 100ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+  transition: All 250ms ease;
+}
+
+.button:hover {
     background-color: #f5916e;
     -webkit-transition: all 0.3s; /* Safari */
     transition: all 0.3s;
+    position: relative;
+    -webkit-box-shadow: 2px !important;
+    -moz-box-shadow: 2px !important;
+    -ms-box-shadow: 2px !important;
+    -o-box-shadow: 2px !important;
+    box-shadow: 2px !important;
+    -webkit-transition: All 100ms ease;
+    -moz-transition: All 100ms ease;
+    -o-transition: All 100ms ease;
+    -ms-transition: All 100ms ease;
+    transition: All 100ms ease;
 }
 
 .blue-bg{
@@ -346,6 +399,16 @@ form input[type="text"]{
     h1{
         color: white;
     }
+
+
+    .about-box {
+      display: flex;
+
+      @media ( max-width: 630px ) {
+          display: block;
+      }
+    }
+
 }
 
 section.blue-bg{
@@ -363,6 +426,11 @@ section.blue-bg{
         color: $main-red;
         font-family: 'Roboto', sans-serif;
         font-weight: 500;
+        color: #e86951;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 21px;
+        margin: 7px 0px;
     }
 
     p{
@@ -412,8 +480,8 @@ section.blue-bg{
     flex: 1;
     margin-top: 10px;
     margin-bottom: 10px;
-    
-    border: solid 1px #FFCA00;
+
+    border: solid 1px $main-yellow;
     background-color: $light-grey;
     font-family: roboto;
     font-size: 1em;
@@ -459,7 +527,7 @@ section.blue-bg{
     width: 100%;
     margin-bottom: 5px;
     padding: 5px;
-    
+
     background-color: $main-red;
     border-radius: 5px;
 
@@ -499,7 +567,6 @@ footer{
 #thank-you{
     background-color: $main-red;
     font-family: 'Roboto', sans-serif;
-    font-style: italic;
     color: #fff;
     text-align: center;
     padding: 45px 65px;
@@ -511,7 +578,7 @@ footer{
         font-size: 1.0em;
     }
 
-    @media (max-device-width: 667px) 
+    @media (max-device-width: 667px)
     and (-webkit-device-pixel-ratio: 2) {
         max-width: 100%;
         width: 310px;
@@ -696,7 +763,7 @@ footer{
     display: flex;
     align-items: stretch;
     justify-content: center;
-    
+
     margin: auto;
     margin-top: 15px;
     margin-bottom: 35px;
@@ -712,8 +779,8 @@ footer{
         border: 1px solid #FFCA00;
         font-family: roboto;
         font-weight: 300;
-        
-        transition: background 250ms ease;
+
+        transition: background 100ms ease;
 
         &:first-child {
             margin-right: 15px;

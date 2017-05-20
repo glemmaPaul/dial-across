@@ -24,11 +24,11 @@ module.exports = function(grunt) {
         src: [
           'node_modules/angular/angular.js',
           'node_modules/angular-ui-mask/dist/mask.js',
-          'src/app/dial-across.js'
+          'src/client/main.js'
           ],
         dest: 'public/js/main.js'
       },
-      
+
     },
     uglify: {
       build: {
@@ -36,7 +36,7 @@ module.exports = function(grunt) {
           'public/js/main.min.js': [
             'node_modules/angular/angular.js',
             'node_modules/angular-ui-mask/dist/mask.js',
-            'src/app/dial-across.js'
+            'src/client/main.js'
           ]
         }
       }
