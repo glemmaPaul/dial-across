@@ -1,0 +1,27 @@
+# {{ ansible_managed }}
+
+
+server {
+    listen       80;
+    server_name  {{ domain_name }};
+
+    {% if use_letsencrypt %}
+        location /.well-known/acme-challenge/ {
+            root {{ letsencrypt_challange_root }};
+            try_files $uri =404;
+        }
+    {% endif %}
+
+    {% if vm and (nginx_cert.stat.exists == false or nginx_key.stat.exists == false) %}
+    location / {
+            proxy_pass 127.0.0.1:{{ nodejs_port }};
+            proxy_http_version 1.1;
+            proxy_set_header Upgrade $http_upgrade;
+            proxy_set_header Connection 'upgrade';
+            proxy_set_header Host $host;
+            proxy_cache_bypass $http_upgrade;
+    }
+    {% else %}
+    return 301 https://{{ domain_name }}$request_uri;
+    {% endif %}
+}

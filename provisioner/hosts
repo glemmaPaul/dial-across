@@ -1,0 +1,11 @@
+[production]
+dialacross.us
+
+[production:vars]
+vm=0
+project_path=/home/ubuntu/dial-across
+repo_version=master
+user=ubuntu
+node_env=production
+use_letsencrypt=True
+static_root=/app/static_html

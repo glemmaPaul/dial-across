@@ -1,0 +1,12 @@
+---
+- hosts: production
+  vars_files:
+    - vars.yml
+  gather_facts: true
+  become: true
+
+  roles:
+    - common
+    - nginx
+    - nodejs
+    - project_data
