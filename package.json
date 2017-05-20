@@ -6,8 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "babel-node index.js --presets es2015,stage-2",
-    "build": "babel index.js --presets es2015,stage-2 --out-file build.js",
-    "serve": "node build.js",
+    "build": "grunt",
     "watch": "grunt; babel-watch --watch src --presets es2015,stage-2  index.js "
   },
   "repository": {
