@@ -400,6 +400,13 @@ form input[type="text"] {
   }
 }
 
+@media (min-width: 800px) {
+  .blue-bg .about-box {
+    max-width: 960px;
+    margin: 0 auto;
+  }
+}
+
 section.blue-bg {
   background-color: #4848E0;
   padding: 45px 0;

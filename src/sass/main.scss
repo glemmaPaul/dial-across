@@ -407,6 +407,11 @@ form input[type="text"]{
       @media ( max-width: 630px ) {
           display: block;
       }
+
+      @media ( min-width: 800px ) {
+          max-width: 960px;
+          margin: 0 auto;
+      }
     }
 
 }
