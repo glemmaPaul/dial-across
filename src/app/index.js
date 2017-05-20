@@ -162,7 +162,7 @@ function attach(app) {
             return response.status(204).send(null)
         }
 
-        return response.send(result.error.details)
+        return response.status(400).send(result.error.details)
     })
 
     return app

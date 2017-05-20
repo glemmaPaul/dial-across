@@ -167,7 +167,7 @@ a {
 
 a.scroll-down {
   text-align: center;
-  color: #4d4df4;
+  color: #4848E0;
   font-size: 0.9em;
   font-weight: 300;
 }
@@ -196,7 +196,7 @@ footer {
 }
 
 header a {
-  color: #4d4df4;
+  color: #4848E0;
   margin-left: 25px;
   font-family: 'Roboto', sans-serif;
   float: right;
@@ -205,6 +205,12 @@ header a {
 footer {
   background-color: #3e3d4d;
   text-align: left;
+  text-align: center;
+  font-size: 13px;
+}
+
+footer a {
+  color: #fff;
 }
 
 p {
@@ -234,7 +240,7 @@ p {
 }
 
 .branded-content h1 {
-  color: #4d4df4;
+  color: #4848E0;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
   font-size: 3.5em;
@@ -246,9 +252,9 @@ p {
 }
 
 .logo {
-  background-image: url(../images/logo-08.png);
+  background-image: url(../images/logo.svg);
   width: 125px;
-  height: 128px;
+  height: 118px;
   background-size: contain;
   background-repeat: no-repeat;
   margin: 0 auto;
@@ -280,7 +286,7 @@ form > div {
 }
 
 form input[type="text"] {
-  background-color: #4d4df4;
+  background-color: #4848E0;
   border: solid 2px #fff;
   border-radius: 6px;
   padding: 8px;
@@ -320,6 +326,42 @@ form input[type="text"] {
   transition: all 0.3s;
   display: inline-block;
   border: none;
+  position: relative;
+  top: 0px;
+  text-decoration: none;
+  margin: 0 10px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 0px #c4c4c4;
+  text-shadow: 1px 1px 1px #fff;
+  -webkit-transition: All 100ms ease;
+  -moz-transition: All 100ms ease;
+  -o-transition: All 100ms ease;
+  -ms-transition: All 100ms ease;
+  transition: All 100ms ease;
+  color: #fff;
+  -webkit-box-shadow: 0px 5px 0px #a01b1b;
+  -moz-box-shadow: 0px 5px 0px #a01b1b;
+  -ms-box-shadow: 0px 5px 0px #a01b1b;
+  -o-box-shadow: 0px 5px 0px #a01b1b;
+  box-shadow: 0px 5px 0px #a01b1b;
+  text-shadow: 1px 1px 1px #a01b1b;
+}
+
+.button:active {
+  position: relative;
+  top: 5px;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  -ms-box-shadow: none !important;
+  -o-box-shadow: none !important;
+  box-shadow: none !important;
+  -webkit-transition: All 100ms ease;
+  -moz-transition: All 250ms ease;
+  -o-transition: All 250ms ease;
+  -ms-transition: All 250ms ease;
+  transition: All 250ms ease;
 }
 
 .button:hover {
@@ -327,18 +369,39 @@ form input[type="text"] {
   -webkit-transition: all 0.3s;
   /* Safari */
   transition: all 0.3s;
+  position: relative;
+  -webkit-box-shadow: 2px !important;
+  -moz-box-shadow: 2px !important;
+  -ms-box-shadow: 2px !important;
+  -o-box-shadow: 2px !important;
+  box-shadow: 2px !important;
+  -webkit-transition: All 100ms ease;
+  -moz-transition: All 100ms ease;
+  -o-transition: All 100ms ease;
+  -ms-transition: All 100ms ease;
+  transition: All 100ms ease;
 }
 
 .blue-bg {
-  background-color: #4d4df4;
+  background-color: #4848E0;
 }
 
 .blue-bg h1 {
   color: white;
 }
 
+.blue-bg .about-box {
+  display: flex;
+}
+
+@media (max-width: 630px) {
+  .blue-bg .about-box {
+    display: block;
+  }
+}
+
 section.blue-bg {
-  background-color: #4d4df4;
+  background-color: #4848E0;
   padding: 45px 0;
 }
 
@@ -353,6 +416,11 @@ section.blue-bg h3 {
   color: #e86951;
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
+  color: #e86951;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  font-size: 21px;
+  margin: 7px 0px;
 }
 
 section.blue-bg p {
@@ -403,7 +471,7 @@ section.blue-bg p {
   flex: 1;
   margin-top: 10px;
   margin-bottom: 10px;
-  border: solid 1px #FFCA00;
+  border: solid 1px #efd513;
   background-color: #e6e7e8;
   font-family: roboto;
   font-size: 1em;
@@ -491,7 +559,6 @@ footer {
 #thank-you {
   background-color: #e86951;
   font-family: 'Roboto', sans-serif;
-  font-style: italic;
   color: #fff;
   text-align: center;
   padding: 45px 65px;
@@ -682,7 +749,7 @@ footer {
   border: 1px solid #FFCA00;
   font-family: roboto;
   font-weight: 300;
-  transition: background 250ms ease;
+  transition: background 100ms ease;
 }
 
 .radio-group--container .btn--radio:first-child {
