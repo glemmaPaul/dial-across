@@ -1,5 +1,7 @@
 /*! HTML5 Boilerplate v5.3.0 | MIT License | https://html5boilerplate.com/ */
 
+@import 'normalize';
+
 /*
  * What follows is the result of much research on cross-browser styling.
  * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
@@ -353,12 +355,12 @@ form input[type="text"]{
     -ms-transition: All 100ms ease;
     transition: All 100ms ease;
     color: #fff;
-    -webkit-box-shadow: 0px 5px 0px #a01b1b;
-    -moz-box-shadow: 0px 5px 0px #a01b1b;
-    -ms-box-shadow: 0px 5px 0px #a01b1b;
-    -o-box-shadow: 0px 5px 0px #a01b1b;
-    box-shadow: 0px 5px 0px #a01b1b;
-    text-shadow: 1px 1px 1px #a01b1b;
+    -webkit-box-shadow: 0px 5px 0px #C3533E;
+    -moz-box-shadow: 0px 5px 0px #C3533E;
+    -ms-box-shadow: 0px 5px 0px #C3533E;
+    -o-box-shadow: 0px 5px 0px #C3533E;
+    box-shadow: 0px 5px 0px #C3533E;
+    text-shadow: 1px 1px 1px #C3533E;
 }
 
 .button:active {

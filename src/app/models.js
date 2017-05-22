@@ -4,14 +4,16 @@ import config from 'config'
 import Promise from 'bluebird'
 import { e164 } from 'libphonenumber'
 import random from 'mongoose-simple-random'
+import debug from 'debug'
 
+var logger = debug('app:models')
 
 mongoose.connect(config.get('Databases.mongodb'), (error) => {
     if (error) {
         throw error
     }
 
-    console.log('mongodb connected.')
+    logger("Mongo db connected")
 })
 mongoose.Promise = Promise
 

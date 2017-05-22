@@ -49,4 +49,3 @@
 
 - name: symblink certificates
   file: src={{ letsencrypt_ssl_cert_dir }} dest={{ ssl_cert_dir }}/{{ domain_name }} owner={{ user }} group=www-data state=link
-

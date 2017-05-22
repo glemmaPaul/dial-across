@@ -27,13 +27,6 @@
   become: false
   tags: ['deploy']
 
-- name: upload static assets
-  command: chdir={{ project_path }} grunt static-upload
-  become: false
-  tags: ['deploy']
-  environment:
-    NODE_ENV: '{{ node_env }}'
-
 - name: stop node apps
   command: pm2 delete all
   become: false
@@ -46,4 +39,4 @@
   tags: ['deploy']
   environment:
     NODE_ENV: '{{ node_env }}'
-  
+
