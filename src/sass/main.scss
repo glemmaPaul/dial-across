@@ -451,7 +451,7 @@ section.blue-bg{
 .bg-illo{
     background-image: url(../images/backdrop-07.png);
     background-position: center;
-    background-size: contain;
+    background-size: 100% auto;
     background-repeat: no-repeat;
 
     @media ( max-width: 576px ) {

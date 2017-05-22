@@ -1,0 +1,11 @@
+{
+    "apps" : [{
+        "name"      : "{{ project_name }}",
+        "script"    : "{{ main_project_file }}",
+        "env": {
+          "NODE_ENV": "{{ node_env }}",
+          "PORT": "{{ nodejs_port }}"
+        },
+        "interpreter": "{{ main_project_intepreter }}"
+    }]
+}

@@ -1,2 +1,4 @@
 ---
-main_project_file: index.js
+main_project_file: "{{ project_path }}/index.js"
+main_project_intepreter: "{{ project_path }}/node_modules/.bin/babel-node"
+pm2_config_path: /home/ubuntu/{{ project_name }}.pm2.json
