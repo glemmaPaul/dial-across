@@ -7,7 +7,7 @@
     "test": "test",
     "start": "babel-node index.js --presets es2015,stage-2",
     "build": "grunt",
-    "watch": "grunt; babel-watch --watch src --presets es2015,stage-2  index.js "
+    "watch": "babel-watch --watch src --presets es2015,stage-2  index.js "
   },
   "repository": {
     "type": "git",
@@ -21,6 +21,7 @@
   "homepage": "https://github.com/glemmaPaul/dial-across#readme",
   "devDependencies": {
     "babel-watch": "^2.0.6",
+    "grunt-contrib-copy": "^1.0.0",
     "nodemon": "^1.11.0"
   },
   "dependencies": {
@@ -31,8 +32,9 @@
     "babel-preset-stage-2": "^6.22.0",
     "bluebird": "^3.5.0",
     "body-parser": "^1.17.1",
-    "config": "^1.25.1",
+    "config": "^1.26.1",
     "debug": "^2.6.6",
+    "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "grunt": "^1.0.1",
     "grunt-contrib-concat": "^1.0.1",

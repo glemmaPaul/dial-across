@@ -14,7 +14,7 @@ module.exports = function(grunt) {
           expand: true,
           cwd: 'src/sass',
           src: ['*.scss'],
-          dest: 'public/css',
+          dest: 'build/css',
           ext: '.css'
         }]
       }
@@ -26,14 +26,14 @@ module.exports = function(grunt) {
           'node_modules/angular-ui-mask/dist/mask.js',
           'src/client/main.js'
           ],
-        dest: 'public/js/main.js'
+        dest: 'build/js/main.js'
       },
 
     },
     uglify: {
       build: {
         files: {
-          'public/js/main.min.js': [
+          'build/js/main.min.js': [
             'node_modules/angular/angular.js',
             'node_modules/angular-ui-mask/dist/mask.js',
             'src/client/main.js'
@@ -49,13 +49,22 @@ module.exports = function(grunt) {
         tasks: ['sass']
       },
     },
+    copy: {
+      images: {
+        files: [
+          // includes files within path and its sub-directories
+          {expand: true, cwd: 'src/images/', src: ['**'], dest: 'build/images/'},
+        ],
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-sass');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // Default task(s).
-  grunt.registerTask('default', ['sass', 'concat', 'uglify']);
+  grunt.registerTask('default', ['sass', 'concat', 'uglify', 'copy:images']);
 };

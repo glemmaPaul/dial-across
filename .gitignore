@@ -64,4 +64,11 @@ typings/
 
 /build.js
 
+# Ansible
+sites.retry
+
+
+# Build
+build/
+
 # End of https://www.gitignore.io/api/node
