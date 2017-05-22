@@ -13,4 +13,4 @@ letsencrypt_ssl_cert_dir: '/etc/letsencrypt/live/{{ domain_name }}'
 letsencrypt_challange_root: '/app/certbot'
 letsencrypt_email: 'info@{{ domain_name }}'
 
-nodejs_port: 8080
+nodejs_port: 3000
