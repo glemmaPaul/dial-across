@@ -1,6 +1,5 @@
 ---
 project_name: dial-across
-main_project_file: server.js
 project_repo_url: git@github.com:glemmaPaul/dial-across.git
 project_repo_remote: origin
 repo_version: master

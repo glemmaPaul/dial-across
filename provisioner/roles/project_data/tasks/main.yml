@@ -10,31 +10,13 @@
   become: true
   tags: ['deploy']
 
-- name: install pm2 & bower & grunt
-  become: true
-  npm: name={{ item }} global=yes production=yes
-  tags: ['deploy']
-  with_items: ['pm2', 'bower', 'grunt']
-
-- name: install bower components based on bower.json.
-  bower:
-    path: "{{ project_path }}"
-  become: false
-  tags: ['deploy']
-
 - name: build in project folder
   command: chdir={{ project_path }} grunt
   become: false
   tags: ['deploy']
 
-- name: stop node apps
-  command: pm2 delete all
-  become: false
-  ignore_errors: yes
-  tags: ['deploy']
-
 - name: start node apps
-  command: chdir={{ project_path }} pm2 start {{ main_project_file }} --name="{{ project_name }}"
+  command: chdir={{ project_path }} pm2 start --interpreter babel-node --name="{{ project_name }}" {{ main_project_file }}
   become: false
   tags: ['deploy']
   environment:
