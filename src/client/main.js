@@ -3,7 +3,7 @@
 * @namespace dial across
 */
 (function () {
-    'user-strict'
+    'use strict'
 
     angular
         .module('dialacross', [
