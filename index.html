@@ -42,6 +42,11 @@
         <section class="branded-content full-height bg-illo">
             <div class="logo"></div>
 
+            <p class="text-center intro-text" style="font-weight: 300;">Dial Across The Aisle is a non-partisan, toll-free number that aims to put people of different political leanings in touch with one another in an effort to bridge divides, understand different realities and gain a new perspective through open and honest conversation.
+            <br /><br />
+            If you're interested in participating, or learning or more about Dial Across The Aisle, please leave us your info via the form below.
+            </p>
+
             <form id="sign-up" ng-hide="formSend" name="signUpForm" ng-submit="vm.signUp(signUpForm.$valid)" ng-controller="SignUpController as vm" novalidate>
 
                 <div class="form-warning--container" ng-show="signUpForm.$submitted">
@@ -103,7 +108,7 @@
                         ui-mask-placeholder
                         ui-mask-placeholder-char="_"
                         model-view-value="true"
-                        placeholder="phone number"
+                        placeholder="Phone number"
                         required
                     />
                 </div>
@@ -149,8 +154,6 @@
                     />
                 </div>
 
-                <p class="text-center" style="font-weight: 300;">Dial Across the aisle is still figuring some stuff out, but we're so happy you're interested in participating. If you leave your phone number and political preference we will let you know when the service is ready to go.</p>
-
                 <button class="button submit" type="submit">Submit</button>
             </form>
         </section>
@@ -162,7 +165,7 @@
             <div class="content-column">
                 <h3>Why should we do this?</h3>
                 <p>
-                We’re not as divided as we seem. Most people just want to make sure them and their loved ones are safe, happy and prosperous. Peoples politics are more about telling their life stories than waging ideological warfare. We’re hoping the two sides will see each other’s essential humanity and realize we’re all more alike than different.
+                We’re not as divided as we seem. Most people just want to make sure them and their loved ones are safe, happy and prosperous. People’s politics are more about telling their life stories than waging ideological warfare. We’re hoping the two sides will see each other’s essential humanity and realize we’re all more alike than different.
                 </p>
             </div>
             <div class="content-column">
@@ -180,9 +183,7 @@
 
 
         <footer>
-            For questions or issues signing up,<br />
-            get in touch at:<br />
-            <a href="mailto:hello@dialacross.us">hello@dialacross.us</a>
+            Get in touch at: <a href="mailto:hello@dialacross.us">hello@dialacross.us</a>
         </footer>
 
         <link href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,700|Roboto:300,500" rel="stylesheet">
