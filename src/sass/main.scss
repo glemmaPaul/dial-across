@@ -268,8 +268,9 @@ p{
     }
 
     p{
-        font-size: 1em;
+        font-size: .9em;
         letter-spacing: 0.6px;
+        margin: 20px 10px 10px 10px;
     }
 }
 
@@ -455,7 +456,7 @@ section.blue-bg{
     background-repeat: no-repeat;
 
     @media ( max-width: 576px ) {
-        background-position: center 40px;
+        background-position: center 69%;
     }
 }
 
@@ -467,10 +468,6 @@ section.blue-bg{
     flex-direction: column;
 
     padding: 20px;
-
-    @media ( max-width: 576px ) {
-        margin-top: 100px;
-    }
 
     @media ( max-width: 768px ) {
         max-width: 400px;
